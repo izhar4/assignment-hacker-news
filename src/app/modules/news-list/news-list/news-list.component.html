@@ -1,0 +1,44 @@
+<div *ngIf="(newsFeed$| async) || isLoading ">
+  <div class=".table-responsive">
+    <table class="table" aria-describedby="data-table">
+      <thead class="thead-dark">
+        <tr>
+          <th id="comment">Comments</th>
+          <th id="voteCount">Vote Count</th>
+          <th id="upVote">Up Vote</th>
+          <th id="details">News Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let news of newsFeed; let i = index; trackBy: trackByFn">
+          <tr *ngIf="!news?.hidden">
+            <td>{{news?.num_comments || 0}}</td>
+            <td>{{news?.points || 0}}</td>
+            <td>
+              <a class="icon-color" (click)="upVote(i)"><span class="glyphicon glyphicon-triangle-top"></span></a>
+            </td>
+            <td>
+              <p>
+                <span class="title">{{news?.title}} </span>
+                <span *ngIf="news?.url" class="url">({{news?.url}})</span>
+                by <span *ngIf="news?.author" class="title"> {{news?.author}}</span>
+                <span class="url"> {{news?.created_at | newsDateTime}}</span>
+                <a class="hand-icon"><span (click)="hideNews(i)">[hide] </span></a>
+              </p>
+            </td>
+          </tr>
+        </ng-container>
+
+      </tbody>
+    </table>
+    <div>
+      <p (click)="prevPage()" *ngIf="currentPage > 0">Previous</p>
+      <p (click)="nextPage()" *ngIf="currentPage<lastPage">Next</p>
+    </div>
+  </div>
+  <div *ngIf="isBrowser">
+    <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+      [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
+</div>
