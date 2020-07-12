@@ -22,3 +22,12 @@ table .thead-dark th {
 .url{
   color: gray;
 }
+
+.pagination-links{
+  float: right;
+  display: flex;
+  p {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}

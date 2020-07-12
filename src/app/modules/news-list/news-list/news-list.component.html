@@ -31,8 +31,9 @@
 
       </tbody>
     </table>
-    <div>
+    <div class="pagination-links">
       <p (click)="prevPage()" *ngIf="currentPage > 0">Previous</p>
+      <span *ngIf="currentPage >0 && currentPage <lastPage">|</span>
       <p (click)="nextPage()" *ngIf="currentPage<lastPage">Next</p>
     </div>
   </div>
