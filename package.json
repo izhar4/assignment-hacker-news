@@ -8,6 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "start:heroku": "node dist/server",
+    "postinstall": "npm run build:ssr",
     "dev:ssr": "ng run assignment-hacker-news:serve-ssr",
     "serve:ssr": "node dist/assignment-hacker-news/server/main.js",
     "build:ssr": "ng build --prod && ng run assignment-hacker-news:server:production",
