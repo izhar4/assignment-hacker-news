@@ -9,6 +9,6 @@ export class NewsApiService {
   constructor(private readonly http: HttpClient) { }
 
   getNewsFeed<T>(params) {
-    return this.http.get<T>('http://hn.algolia.com/api/v1/search', { params });
+    return this.http.get<T>('https://hn.algolia.com/api/v1/search', { params });
   }
 }
