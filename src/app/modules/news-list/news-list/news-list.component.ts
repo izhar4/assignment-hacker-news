@@ -73,9 +73,7 @@ export class NewsListComponent implements OnInit {
         this.lastPage = res.nbPages;
         this.currentPage = res.page;
         this.isLoading = false;
-        this.newsFeed = res.hits;
-        updateVotesAndHidden(this.newsFeed);
-
+        this.newsFeed =  updateVotesAndHidden(res.hits);
         const {data, labels } = getChartData(this.newsFeed);
         this.lineChartData = [
           {
@@ -108,7 +106,7 @@ export class NewsListComponent implements OnInit {
     news.points = news.points + 1;
     this.updateStorage(news);
     this.newsFeed[index] = { ...news };
-    this.getNewsFeed(this.route.snapshot.queryParams);
+    this.lineChartData[0].data[index] = news.points;
   }
 
   updateStorage(news) {

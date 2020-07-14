@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <ng-container *ngFor="let news of newsFeed; let i = index; trackBy: trackByFn">
-          <tr *ngIf="!news?.hidden">
+          <tr>
             <td>{{news?.num_comments || 0}}</td>
             <td>{{news?.points || 0}}</td>
             <td>

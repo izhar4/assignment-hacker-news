@@ -18,19 +18,24 @@ export const updateLocalStorage = (news) => {
     JSON.parse(localStorage.getItem('newsFedd') || '{}');
   if (Object.keys(storedData).length) {
     if (storedData[news.objectID]) {
-      storedData[news.objectID] = { ...news };
+      storedData[news.objectID] = {
+        points: news.points,
+        hidden: news.hidden
+      };
     } else {
       storedData = {
         ...storedData,
         [news.objectID]: {
-          ...news
+          points: news.points,
+          hidden: news.hidden
         }
       };
     }
   } else {
     storedData = {
       [news.objectID]: {
-        ...news
+        points: news.points,
+        hidden: news.hidden
       }
     };
   }
@@ -50,13 +55,16 @@ export const getChartData = (newsFeed) => {
 export const updateVotesAndHidden = (newsFeed) => {
   const storedData = JSON.parse(localStorage.getItem('newsFedd') || '{}');
   if (Object.keys(storedData).length) {
-    newsFeed.forEach(news => {
-      if (storedData[news.objectID]) {
-        news.points = storedData[news.objectID].points;
-        news.hidden = storedData[news.objectID].hidden;
+    newsFeed = newsFeed.map(news => {
+      if (storedData[news.objectID] && !storedData[news.objectID].hidden) {
+        return {...news, points: storedData[news.objectID].points};
+      } else if (!storedData[news.objectID]) {
+        return {...news};
       }
-    });
+    }).filter(res => res);
   }
+  return newsFeed;
 };
+
 
 
