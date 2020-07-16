@@ -6,8 +6,10 @@ import { NewsApiService } from '../../../services/news-api.service';
 import { CHART_OPTIONS } from '../../../constants/common-constants';
 import { map, catchError } from 'rxjs/operators';
 import { ICommonResponse } from '../../../../app/models/common-response';
-import { trackByFn, changeQueryParams, updateLocalStorage, getChartData,
-  updateVotesAndHidden } from '../../../../app/utills/common.utill';
+import {
+  trackByFn, changeQueryParams, updateLocalStorage, getChartData,
+  updateVotesAndHidden
+} from '../../../../app/utills/common.utill';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs/internal/observable/of';
 
@@ -73,8 +75,8 @@ export class NewsListComponent implements OnInit {
         this.lastPage = res.nbPages;
         this.currentPage = res.page;
         this.isLoading = false;
-        this.newsFeed =  updateVotesAndHidden(res.hits);
-        const {data, labels } = getChartData(this.newsFeed);
+        this.newsFeed = updateVotesAndHidden(res.hits);
+        const { data, labels } = getChartData(this.newsFeed);
         this.lineChartData = [
           {
             data
@@ -106,7 +108,8 @@ export class NewsListComponent implements OnInit {
     news.points = news.points + 1;
     this.updateStorage(news);
     this.newsFeed[index] = { ...news };
-    this.lineChartData[0].data[index] = news.points;
+    this.lineChartData[0].data = [...this.lineChartData[0].data.slice(0, index),
+    this.lineChartData[0].data[index] + 1, ...this.lineChartData[0].data.slice(index + 1)];
   }
 
   updateStorage(news) {
