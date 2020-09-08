@@ -14,7 +14,7 @@
     "serve:ssr": "node dist/assignment-hacker-news/server/main.js",
     "build:ssr": "ng build --prod && ng run assignment-hacker-news:server:production",
     "prerender": "ng run assignment-hacker-news:prerender",
-    "heroku-postbuild": "ng build --configuration=production"
+    "heroku-postbuild": "ng build --prod && ng run space:server:production"
   },
   "private": true,
   "dependencies": {
