@@ -76,13 +76,13 @@ export class NewsListComponent implements OnInit {
         this.currentPage = res.page;
         this.isLoading = false;
         this.newsFeed = updateVotesAndHidden(res.hits);
-        const { data, labels } = getChartData(this.newsFeed);
-        this.lineChartData = [
-          {
-            data
-          }
-        ];
-        this.lineChartLabels = labels;
+        // const { data, labels } = getChartData(this.newsFeed);
+        // this.lineChartData = [
+        //   {
+        //     data
+        //   }
+        // ];
+        // this.lineChartLabels = labels;
         return res;
       }),
       catchError(error => {
@@ -99,8 +99,8 @@ export class NewsListComponent implements OnInit {
       hidden: true
     };
     this.updateStorage(hiddenNews);
-    this.lineChartData[0].data.splice(index, 1);
-    this.lineChartLabels.splice(index, 1);
+    // this.lineChartData[0].data.splice(index, 1);
+    // this.lineChartLabels.splice(index, 1);
   }
 
   upVote(index) {
@@ -108,8 +108,8 @@ export class NewsListComponent implements OnInit {
     news.points = news.points + 1;
     this.updateStorage(news);
     this.newsFeed[index] = { ...news };
-    this.lineChartData[0].data = [...this.lineChartData[0].data.slice(0, index),
-    this.lineChartData[0].data[index] + 1, ...this.lineChartData[0].data.slice(index + 1)];
+    // this.lineChartData[0].data = [...this.lineChartData[0].data.slice(0, index),
+    // this.lineChartData[0].data[index] + 1, ...this.lineChartData[0].data.slice(index + 1)];
   }
 
   updateStorage(news) {
