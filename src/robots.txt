@@ -1,11 +1,2 @@
-
-
-User-agent: Twitterbot
+User-agent: *
 Allow: /
-
-User-agent: facebookexternalhit
-Allow: /*/videos/
-Allow: /ajax/bootloader-endpoint/
-Allow: /ajax/pagelet/generic.php/PagePostsSectionPagelet
-Allow: /safetycheck/
-Allow: /watch/?v=*
