@@ -15,10 +15,10 @@ export class AppComponent {
     const overrideImage = 'https://eventbox-prod.s3.amazonaws.com/profile/80245241589900869247.jpg';
     FB.ui({
       method: 'share_open_graph',
-      action_type: 'og.likes',
+      action_type: 'og.shares',
       action_properties: JSON.stringify({
         object: {
-          'og:url': overrideLink,
+          'og:url': window.location.href,
           'og:title': overrideTitle,
           'og:description': overrideDescription,
           'og:image': overrideImage
@@ -26,6 +26,7 @@ export class AppComponent {
       })
     },
       function (response) {
+        console.log(response)
         // Action after response
       });
   }
